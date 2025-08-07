@@ -1,0 +1,23 @@
+name: mirror repo
+
+on:
+    push:
+      branches:
+        - main
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Add Mirror
+        run: |
+          git remote add mirror \
+          /* token to add */ git@github.com:uktrade/rowan-test-mirror-repo.git
+      - name: Push to Mirror
+        run: |
+          git push mirror main:main --force
+        
