@@ -16,7 +16,7 @@ jobs:
       - name: Add Mirror
         run: |
           git remote add mirror \
-          /* token to add */ git@github.com:uktrade/rowan-test-mirror-repo.git
+           https://x-access:${{ secrets.PAT }}@github.com:uktrade/rowan-test-mirror-repo.git
       - name: Push to Mirror
         run: |
           git push mirror main:main --force
