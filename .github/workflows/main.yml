@@ -13,11 +13,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      - name: Add Mirror
-        run: |
-          git remote add mirror \
-           https://x-access:${{ secrets.PAT }}@github.com/uktrade/rowan-test-mirror-repo.git
       - name: Push to Mirror
-        run: |
-          git push mirror main:main --force
-        
+        run: git push --mirror "https://x:@github.com/uktrade/rowan-test-mirror-repo.git
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT }}
