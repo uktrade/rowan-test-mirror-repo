@@ -1,37 +1,17 @@
-name: mirror repo
+name: Mirroring
 
-on:
-    push:
-      branches:
-        - main
+on: [push, delete]
 
 jobs:
-  mirror:
+  to_github:
     runs-on: ubuntu-latest
-    steps:
-      - name: Checkout source
-        uses: actions/checkout@v3
+    steps:                                              # <-- must use actions/checkout before mirroring!
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      - name: Test pull mirror repo
-        env:
-          GITHUB_TOKEN: ${{ secrets.PAT }}
-        run: |
-            git config --global
-            url."https://x-access:${{ secrets.PAT }}@github.com"
-            .insteadOf https:github.com/
-            git clone http://github.com/uktrade/rowan-test-mirror-repo.git
-      #   env:
-      # - name: Add mirror
-      #   run: |
-      #       git remote add mirror \
-      #       https://x-access:${{ secrets.PAT }}@github.com/uktrade/rowan-test-mirror-repo.git
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.PAT }}
-      # - name: Push main to mirror
-      #   run: |
-      #       git push mirror main:main --force
-      # - name: Push to Mirror
-      #   run: git push --mirror "https://x:$GITHUB_TOKEN@github.com/uktrade/rowan-test-mirror-repo"
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.PAT }}
+      - uses: pixta-dev/repository-mirroring-action@v1
+        with:
+          target_repo_url:
+            git@gitlab.com:uktrade/rowan-test-mirror-repo.git
+          ssh_private_key:                              # <-- use 'secrets' to pass credential information.
+            ${{ secrets.SSH_PRIVATE }}
