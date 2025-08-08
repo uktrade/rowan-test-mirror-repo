@@ -1,6 +1,9 @@
-name: Mirroring
+name: SSH Mirroring
 
-on: [push, delete]
+on:
+    push:
+      branches:
+        - main
 
 jobs:
   to_github:
