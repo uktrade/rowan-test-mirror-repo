@@ -15,11 +15,9 @@ jobs:
 
     steps:
       # 1) Checkout only the main branch (no tags/history needed)
-      - name: Checkout main
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v3
         with:
-          ref: main
-          fetch-depth: 1
+          fetch-depth: 0
 
       # 2) Load your SSH deploy key from the source repo's secrets
       - name: Set up SSH agent
