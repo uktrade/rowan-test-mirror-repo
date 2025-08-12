@@ -27,11 +27,6 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE }}
 
-      # 3) Trust GitHub's host key (adjust if your destination host differs)
-      - name: Add github.com to known_hosts
-        run: |
-          mkdir -p ~/.ssh
-          ssh-keyscan -H github.com >> ~/.ssh/known_hosts
 
       # 4) Push main → main to the destination repo
       - name: Push main to destination
@@ -39,7 +34,4 @@ jobs:
           DEST_SSH_URL: git@github.com:uktrade/rowan-test-mirror-repo.git
           DEST_BRANCH: main
         run: |
-          # git config user.name "github-actions[bot]"
-          # git config user.email "github-actions[bot]@users.noreply.github.com"
-
           git push ${DEST_SSH_URL} ${DEST_BRANCH} 
