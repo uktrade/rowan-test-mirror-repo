@@ -1,19 +1,19 @@
-name: mirror repo
+# name: mirror repo
 
-on:
-    push:
-      branches:
-        - main
+# on:
+#     push:
+#       branches:
+#         - main
 
-jobs:
-  mirror:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout source
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-      - name: Push to Mirror
-        run: git push --mirror "https://x:$GITHUB_TOKEN@github.com/uktrade/rowan-test-mirror-repo.git"
-        env:
-          GITHUB_TOKEN: ${{ secrets.PAT }}
+# jobs:
+#   mirror:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout source
+#         uses: actions/checkout@v3
+#         with:
+#           fetch-depth: 0
+#       - name: Push to Mirror
+#         run: git push --mirror "https://x:$GITHUB_TOKEN@github.com/uktrade/rowan-test-mirror-repo.git"
+#         env:
+#           GITHUB_TOKEN: ${{ secrets.PAT }}
