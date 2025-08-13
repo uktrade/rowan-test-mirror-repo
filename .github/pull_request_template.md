@@ -2,8 +2,8 @@
 
 Please answer the following questions before submitting your pull request:
 
-- [ ] **Have you run the pre-commit hook?**  
-  _This helps ensure code quality and consistency before merging._
+- [ ] I have scanned for secrets within the code changes.
+- [ ] I have scanned for data breaches within the code changes.
 
 ---
 
